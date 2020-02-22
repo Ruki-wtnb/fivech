@@ -9,7 +9,8 @@ class ThreadsController < ApplicationController
   end
   
   def create
-    @thre = Thre.create(user_id: @current_user.id, title: title)
+    binding.pry
+    @thre = Thre.create(user_id: current_user.id, title: params[:thre][:title])
     
     if @thre.save
       redirect_to threads_index_path

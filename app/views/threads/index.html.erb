@@ -5,12 +5,13 @@
         
         <%= link_to 'スレッド新規登録', new_thread_path, class:'btn btn-success' %>
         
-        <div class="thread-index">
+        
           <% @thre.each do |t|%>
+          <div class="thread-single">
             <%= t.title %>
             <%= t.created_at %>
+          </div>
           <% end %>
-        </div>
         
       </div>
     </div>
