@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <h1 class="text-center text-white">スレッド一覧</h1>
+        
+        <%= link_to '一覧へ戻る', threads_path, class:'btn btn-danger' %>
+        
+            <div class="well">
+                <%= @thre.title %>
+                <%= @thre.created_at %>
+                <%= @thre.id %>
+            </div>
+            
+            <% @thre.re.each do |t| %>
+                <%= t.body %>
+            
+            <% end %>
+
+
+
+            <%= form_for @re,:url => {action: "res"} do |f| %>
+            
+             <%= f.label :body, "コメント", class: 'text-white' %>
+             <%= f.text_area :body, class: 'form-control'%>
+             
+             <%= f.hidden_field :thre_id, value: @thre.id %>
+             
+             <%= f.submit "投稿", class: 'btn-block btn-white' %>
+            <% end %>
+            
+       
+    </div>
+  </div>
+ </div>

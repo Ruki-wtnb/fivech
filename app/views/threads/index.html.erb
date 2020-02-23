@@ -1,17 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4 col-xs-offset-3 col-xs-6 users-new-container">
-      <h1 class="text-center text-white">スレッド一覧</h1>
+      <h1 class="text-center text-white">Fivech</h1>
         
         <%= link_to 'スレッド新規登録', new_thread_path, class:'btn btn-success' %>
         
-        
           <% @thre.each do |t|%>
-          <div class="thread-single">
-            <%= t.title %>
-            <%= t.created_at %>
-          </div>
+            <div class="well">
+              <%= link_to thread_path(id: t.id), method: :get do %>
+                <%= t.title %>
+                <%= t.created_at %>
+              <% end %>
+            </div>
           <% end %>
+            
         
       </div>
     </div>

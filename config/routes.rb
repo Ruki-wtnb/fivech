@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   
   resources :threads
   
+  post 'threads/res'
+  
 end
