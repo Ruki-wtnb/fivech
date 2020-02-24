@@ -6,6 +6,7 @@ class ThreadsController < ApplicationController
   
   def new
     @thre = Thre.new
+    @category = Category.all
   end
   
   def create
@@ -21,7 +22,6 @@ class ThreadsController < ApplicationController
   
   def show
     @thre = Thre.find(params[:id])
-    @re_all = Re.all
     @re = Re.new
   end
   
@@ -30,7 +30,8 @@ class ThreadsController < ApplicationController
     @re = Re.create(user_id: current_user.id, thre_id:  params[:re][:thre_id], body: params[:re][:body])
     params[:id] = params[:re][:thre_id]
     if @re.save
-      render :show
+      flash.now[:danger] = '投稿しました'
+      @thre = Thre.find(params[:re][:thre_id])
     else
       flash.now[:danger] = '投稿に失敗しました'
     end

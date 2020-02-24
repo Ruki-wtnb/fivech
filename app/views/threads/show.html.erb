@@ -12,24 +12,9 @@
                 <%= @thre.id %>
             </div>
             
-            <% @thre.re.each do |t| %>
-                <%= t.body %>
-            
-            <% end %>
-
-
-
-            <%= form_for @re,:url => {action: "res"} do |f| %>
-            
-             <%= f.label :body, "コメント", class: 'text-white' %>
-             <%= f.text_area :body, class: 'form-control'%>
-             
-             <%= f.hidden_field :thre_id, value: @thre.id %>
-             
-             <%= f.submit "投稿", class: 'btn-block btn-white' %>
-            <% end %>
-            
-       
+            <div id="thre">
+            <%= render partial: 'res', locals: {thre: @thre} %>
+            </div>
     </div>
   </div>
  </div>
