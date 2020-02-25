@@ -9,6 +9,11 @@
             <div class="well">
               <%= link_to thread_path(id: t.id), method: :get do %>
                 <%= t.title %>
+                <br>
+                <% t.categories.each do |c| %>
+                <span class="badge"><%= c.name %></span>
+                <% end %>
+                
                 <%= t.created_at %>
               <% end %>
             </div>
