@@ -10,8 +10,11 @@
   </head>
 
   <body>
-    <%= link_to 'ログアウト', logout_path, method: :delete, data: {confirm: "ログアウトしますか？"} %>
-    <%= yield %>
+    <% if logged_in? %>
+      <%= link_to 'ログアウト', logout_path, method: :delete, data: {confirm: "ログアウトしますか？"} %>
+    <% end %>
+      <%= yield %>
+    
   </body>
   
     <script>　<!--メッセージバーの表示5秒-->
