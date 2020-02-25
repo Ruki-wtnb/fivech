@@ -10,11 +10,10 @@ class ThreadsController < ApplicationController
   end
   
   def create
-    binding.pry
-    @thre = Thre.create(user_id: current_user.id, title: params[:thre][:title])
+    @thre = Thre.new(post_params)
     
     if @thre.save
-      redirect_to threads_index_path
+      redirect_to threads_path
     else
       flash.now[:danger] = '投稿に失敗しました'
     end
@@ -26,16 +25,23 @@ class ThreadsController < ApplicationController
   end
   
   def res
-    
     @re = Re.create(user_id: current_user.id, thre_id:  params[:re][:thre_id], body: params[:re][:body])
     params[:id] = params[:re][:thre_id]
     if @re.save
       flash.now[:danger] = '投稿しました'
       @thre = Thre.find(params[:re][:thre_id])
+      @re = Re.new
+      
     else
       flash.now[:danger] = '投稿に失敗しました'
     end
     
+  end
+  
+  private
+  def post_params
+    params.require(:thre).permit(:user_id, :title, category_ids: [])
+  
   end
   
   

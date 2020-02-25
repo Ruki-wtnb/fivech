@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :login_required
  
  def new
  end
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
   user = User.find_by(email: user_info[:email])
       if user && user.authenticate(user_info[:password])
       log_in user
-      redirect_to threads_index_path, success: 'ログインに成功しました'
+      redirect_to threads_path, success: 'ログインに成功しました'
       #binding.pry
       else
       flash.now[:danger] = 'ログインに失敗しました'
@@ -18,7 +19,7 @@ class SessionsController < ApplicationController
   
   def destroy
     log_out
-    redirect_to root_path, info: 'ログアウトしました'
+    redirect_to login_path, info: 'ログアウトしました'
   end
   
   private
