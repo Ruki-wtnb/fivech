@@ -4,6 +4,7 @@
    <h1 class="text-center text-white">スレッド新規投稿</h1>
    
    <%= link_to '一覧へ戻る', threads_path, class:'btn btn-danger' %>
+   <%= link_to 'カテゴリ追加', categos_new_path, class:'btn btn-success' %>
    
       <%= form_for @thre, url: threads_path do |f| %>
        <div class="form-group">
